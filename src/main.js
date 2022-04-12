@@ -1,6 +1,5 @@
 /* eslint-disable import/no-cycle */
 import { routes } from './components/Router.js';
-import { CreateAccount } from './Firebase/auth.js';
 
 const rootDiv = document.getElementById('root');
 
@@ -17,20 +16,14 @@ export const onNavigate = (pathname) => {
 };
 
 const component = routes[window.location.pathname];
+onNavigate('/#');
+window.addEventListener('hashchange', () => onNavigate());
 
-window.onpopstate = () => {
+/* window.onpopstate = () => {
   while (rootDiv.firstChild) {
     rootDiv.removeChild(rootDiv.firstChild);
   }
   rootDiv.appendChild(routes[window.location.pathname]());
 };
 
-rootDiv.appendChild(component());
-
-// Evento de registrar al usuario
-/*  submitBtn.addEventListener('click', () => {
-  const password = document.getElementById('register-password').value;
-  const email = document.getElementById('register-email').value;
-  CreateAccount(email, password);
-});
- */
+rootDiv.appendChild(component()); */

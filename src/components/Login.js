@@ -1,7 +1,3 @@
-/* eslint-disable import/no-unresolved */
-/* eslint-disable import/no-cycle */
-// import { signInWithPopup } from 'https://www.gstatic.com/firebasejs/9.6.10/firebase-auth.js';
-// import { doc, getDoc } from 'https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore.js';
 import { onNavigate } from '../main.js';
 import { createAccountByGoogle, LoginByEmailPassword } from '../Firebase/auth.js';
 import { createElements } from '../util.js';
@@ -68,7 +64,7 @@ export const Login = () => {
   noAccount.id = 'p-no-account';
 
   noAccountRegister.textContent = 'Registrate';
-  noAccountRegister.href = '/Register';
+  noAccountRegister.href = '/#Register';
   noAccountRegister.id = 'a-noaccount-register';
   loginDiv.append(noAccount, noAccountRegister);
 
@@ -78,7 +74,7 @@ export const Login = () => {
   goLandingButton.setAttribute('class', 'button-go-landing');
   goLandingButton.textContent = 'Regresar al inicio';
 
-  goLandingButton.addEventListener('click', () => onNavigate('/'));
+  goLandingButton.addEventListener('click', () => onNavigate('/#'));
   loginDiv.appendChild(goLandingButton);
 
   return loginDiv;

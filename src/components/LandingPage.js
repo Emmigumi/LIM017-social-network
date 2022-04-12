@@ -15,11 +15,11 @@ export const LandingView = () => {
   const [buttonRegister, buttonLogin] = createElements('button', 'button');
   buttonRegister.id = 'btn-register';
   buttonRegister.textContent = 'Registrate';
-  buttonRegister.addEventListener('click', () => onNavigate('/Register'));
+  buttonRegister.addEventListener('click', () => onNavigate('/#Register'));
 
   buttonLogin.id = 'btn-login';
   buttonLogin.textContent = 'Iniciar Sesion';
-  buttonLogin.addEventListener('click', () => onNavigate('/Login'));
+  buttonLogin.addEventListener('click', () => onNavigate('/#Login'));
 
   landingDiv.append(buttonRegister, buttonLogin);
 

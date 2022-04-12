@@ -5,7 +5,7 @@
 import {
   CreateAccount, createAccountByGoogle,
 } from '../Firebase/auth.js';
-import { onNavigate } from '../main.js';
+// import { onNavigate } from '../main.js';
 import { createElements } from '../util.js';
 
 // registro
@@ -84,7 +84,7 @@ export const SignUp = () => {
 
   betterLogin.textContent = 'Ingresa';
   betterLogin.setAttribute('id', 'a-better-login');
-  betterLogin.href = '/Login';
+  betterLogin.href = '/#Login';
   registerDiv.append(yesAccount, betterLogin);
 
   // go back landing
@@ -93,7 +93,9 @@ export const SignUp = () => {
   goLandingButton.setAttribute('class', 'button-go-landing');
   goLandingButton.setAttribute('id', 'btn-go-landing');
 
-  goLandingButton.addEventListener('click', () => onNavigate('/'));
+  goLandingButton.addEventListener('click', () => {
+    window.location.hash = '/#';
+  });
   registerDiv.appendChild(goLandingButton);
 
   return registerDiv;
