@@ -34,5 +34,8 @@
   },
   "engines": {
     "node": ">=14"
+  },
+  "dependencies": {
+    "jsdom": "^19.0.0"
   }
 }

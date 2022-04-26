@@ -13,9 +13,9 @@ describe('Crear cuenta con google', () => {
   });
 });
 
-describe('', () => {
+/* describe('', () => {
   it('Muestra un mesnaje de error', () => {
     const signUpInWithEmailAndPassword = jest.fn();
     signUpInWithEmailAndPassword.mockRejectedValue({ error: 'password/mismatch' });
   });
-});
+}); */
