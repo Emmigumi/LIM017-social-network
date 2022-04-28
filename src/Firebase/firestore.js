@@ -1,6 +1,7 @@
 import {
-  /* doc, getDoc, */
-  getFirestore, collection, addDoc, // getDocs,
+  getFirestore, collection, addDoc,
+  getDocs, onSnapshot,
+  doc,
 } from './Firebase-util.js';
 
 import { app } from './init.js';
@@ -36,3 +37,9 @@ export const store = (data, collectionName) => {
 //   // doc.data() is never undefined for query doc snapshots
 //   console.log(doc.id, " => ", doc.data());
 // });
+
+export const saveTask = (title, description) => addDoc(collection(firestore, 'task'), { title, description });
+
+export const getTasks = () => getDocs(collection(firestore, 'task'));
+
+export const onGetTask = (callback) => onSnapshot(collection(firestore, 'task'), callback);

@@ -1,5 +1,3 @@
-import { saveTask, onGetTask } from '../Firebase/firestore.js';
-
 /* import { createElements } from '../util.js';
 import { store } from '../Firebase/firestore.js';
 
@@ -28,6 +26,7 @@ export const Feed = () => {
   // boton con addeventlistener
   // formulario para crear una nueva publicacion
   const newPostForm = document.createElement('form');
+  newPostForm.id = 'div-form-post';
   newPostForm.classList.add('hide');
   const newPostTitle = document.createElement('input');
   newPostTitle.placeholder = 'coloca el titulo de tu publicación';
@@ -131,50 +130,3 @@ export const Feed = () => {
   return feedDivWrapper;
 };
  */
-
-export const Feed = () => {
-  const feedDiv = document.createElement('div');
-  feedDiv.id = 'conteiner-post';
-
-  const feedTemplate = `<form id="task-form">
-  <label for="title">Title</label>
-  <input type="text" placeholder="task-title" id="task-title">
-  <label for="description">Descriptions</label>
-  <textarea id="task-description" rows="3" placeholder="task-description"></textarea>
-<button id="btn-task-save">Save</button>
-</form>`;
-  feedDiv.innerHTML += feedTemplate;
-
-  const taskForm = feedDiv.querySelector('#task-form');
-  taskForm.addEventListener('submit', (e) => {
-    e.preventDefault();
-    const title = taskForm['task-title'];
-    const description = taskForm['task-description'];
-    saveTask(title.value, description.value);
-    taskForm.reset();
-  });
-
-  const taskContent = document.createElement('div');
-  taskContent.id = 'task-content';
-  taskContent.className = 'task-content-class';
-  console.log('taskContent', taskContent);
-
-  onGetTask((querySnapshot) => {
-    let html = '';
-    console.log('html', html);
-    querySnapshot.forEach((doc) => {
-      const task = doc.data();
-      console.log('task', task);
-      html += `<div>
-      <h3>${task.title}</h3>
-      <p>${task.description}</p>
-      </div>`;
-    });
-    taskContent.innerHTML = html;
-    console.log(taskContent.innerHTML);
-  });
-  const callDivGlobal = feedDiv.querySelector('#task-form');
-  callDivGlobal.insertAdjacentElement('beforeend', taskContent);
-
-  return feedDiv;
-};

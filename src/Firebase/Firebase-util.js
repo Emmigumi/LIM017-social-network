@@ -10,14 +10,16 @@ import {
 
 import {
   /* doc, getDoc, */
-  getFirestore, collection, addDoc /* , getDocs */,
+  getFirestore, collection, addDoc, getDocs, onSnapshot, doc,
 } from 'https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore.js';
 
 export { initializeApp };
 
 export {
   getAuth, GoogleAuthProvider, signInWithPopup, createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
+  signInWithEmailAndPassword, onSnapshot, doc,
 };
 
-export { getFirestore, collection, addDoc };
+export {
+  getFirestore, collection, addDoc, getDocs,
+};
