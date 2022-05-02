@@ -44,13 +44,14 @@ export const Feed = () => {
   // variable que me indica el estado de edición
   let editStatus = false;
   let id = '';
+
   const feedPostWrapper = feedWrapper.querySelector('#feedPost1');
   onGetPostInRealTime((querySnapShot) => {
     let cleaner = '';
     querySnapShot.forEach((doc) => {
       const post = doc.data();
       cleaner += `
-     <section id='postContainer' class= "postContainer">
+    <section id='postContainer' class= "postContainer">
         <div id='userInfoDiv'></div>
         <p id='user-name'></p>
         <div id='postTitle'>${post.title}</div>
@@ -58,19 +59,30 @@ export const Feed = () => {
         <button id="btn-deleted" class="btn-deleted-class" data-id="${doc.id}">Delete</button>
         <button id="btn-edit" class="btn-edit-class" data-id="${doc.id}">Edit</button>
         <div id='interaction'>
-          <div id='like-container'></div>
-        </div>
+          <div id="div-btn-like">
+          <button id="like-btn" class="btn-like-class" data-id="${doc.id}">LIKE
+          </button>
+          <div id='counter-like'><p>${post.like.length}</p></div>
+          </div>
+          <div id='div-btn-deslike'
+          <button id="deslike-btn" class="btn-deslike-class" data-id="${doc.id}">
+          DESLIKE</button>
+          <div id='counter-deslike'><p></p></div>
+          </div>
+          </div>
       </section>
-     `;
+    `;
     });
     feedPostWrapper.innerHTML = cleaner;
-    console.log(feedPostWrapper);
+
     const btnsDeletePost = feedPostWrapper.querySelectorAll('.btn-deleted-class');
     btnsDeletePost.forEach((btn) => {
       btn.addEventListener('click', (event) => {
         deletePost(event.target.dataset.id);
       });
     });
+
+    // Make btn for Editing post
     const btnsEdit = feedPostWrapper.querySelectorAll('.btn-edit-class');
     btnsEdit.forEach((btnE) => {
       btnE.addEventListener('click', async (e) => {
@@ -84,9 +96,21 @@ export const Feed = () => {
         id = doc.id;
       });
     });
+   /*  const btnLikes = feedPostWrapper.querySelectorAll('.btn-like-class');
+    console.log(btnLikes);
+    btnLikes.forEach((btnL) => {
+      btnL.addEventListener('click', (event) => {
+        const arrayLike = doc.data().like;
+        console.log(event.target.dataset.id);
+        // declarrar en n varibale un doc.data().like
+        // crear un id y un else, en el if=condicion si incluye dentro del array(like) el identificador (user id), que lo saque
+        // else, lo mismo pero que lo ingrese
+
+      });
+    }); */
   });
 
-  // event to submit new post
+  // event to submit new post, edit and actualice post
   formNewPost.addEventListener('submit', (e) => {
     e.preventDefault();
     if (!editStatus) {

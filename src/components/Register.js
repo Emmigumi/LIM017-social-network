@@ -38,9 +38,10 @@ export const SignUp = () => {
 
   registerDiv.append(logo, mainImg, registerH2);
 
-  const [inputContainer, registerEmail, submitBtn] = createElements(
+  const [inputContainer, registerEmail, alertContainer, submitBtn] = createElements(
     'form',
     'input',
+    'div',
     'button',
   );
 
@@ -49,13 +50,13 @@ export const SignUp = () => {
   registerEmail.id = 'register-email';
   registerEmail.className = 'inputs-style';
   registerEmail.type = 'email';
-
   registerEmail.placeholder = 'Correo electrónico';
 
+  alertContainer.id = 'alert-container';
+  alertContainer.className = 'showParagraphError';
   // Validacion de correo con regex
   registerEmail.addEventListener('blur', (event) => {
     const inputValue = event.target.value;
-
     // Function that performs regex validation should go here
     if (!inputValue.match(/^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/g)) {
       alert('Correo inválido - Verifica tu dirección de correo');
@@ -80,6 +81,7 @@ export const SignUp = () => {
     registerEmail,
     registerPassword,
     confirmPassword,
+    alertContainer,
     submitBtn,
   );
   registerDiv.appendChild(inputContainer);
@@ -92,7 +94,19 @@ export const SignUp = () => {
     const password1 = confirmPassword.querySelector('input');
     if (password.value === password1.value) {
       store({ email: registerEmail.value }, 'users');
-      CreateAccount(registerEmail.value, password.value);
+      CreateAccount(registerEmail.value, password.value).then((userCredential) => {
+        const user = userCredential.user;
+        console.log(user);
+        sendEmailVerification1(email).then((value) => {
+          console.log(value);
+          const divAlert = registerDiv.querySelector('#alert-container');
+          if (sendEmailVerification1 === true) {
+            divAlert.innerHTML = 'Verificar en la bandeja de entrada';
+          }
+        }).catch((error) => {
+          console.log(error);
+        });
+      });
 
       // window.location.href = '/Feed';
     } else {
@@ -135,7 +149,6 @@ export const SignUp = () => {
     createAccountByGoogle();
 
     // setTimeout(2000, window.location.href = '/Feed');
-
   });
 
   // add botones al container, container a div global
