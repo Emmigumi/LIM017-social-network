@@ -1,10 +1,10 @@
-/* import { onNavigate } from '../../src/main.js';
-import { routes } from '../../src/components/Router.js'; */
-import { SignUp } from '../../src/components/Register.js';
+import { onNavigate } from '../../src/main.js';
+// import { routes } from '../../src/components/Router.js';
+// import { SignUp } from '../../src/components/Register.js';
 
 jest.mock('../../src/Firebase/Firebase-util.js');
 
-describe('Register', () => {
+/* describe('Register', () => {
   it('', () => {
     document.body.innerHTML = '<div id=\'root\'><div id= \'register-wrapper\'></div></div>';
     const result = SignUp();
@@ -12,19 +12,21 @@ describe('Register', () => {
     const passConf = result.querySelector('#confirm-password');
     console.log('que hace pass', pass, passConf);
   });
-});
+}); */
 
 // Intento fallido main Line-16 routes not function
-/* describe('Función onNavigate', () => {
+describe('Función onNavigate', () => {
   it('La función onNavigate debe cargar vista register', () => {
     document.body.innerHTML = '<div id="root"></div>';
-    const  registerDiv = SignUp();
-    console.log('uno', register);
-    const routess = routes;
-    console.log('dos', routess);
-    expect(onNavigate('/Register')).toEqual(registerDiv);
+    /* const registerDiv = SignUp();
+    console.log('uno', registerDiv); */
+    /*  const routess = routes;
+    console.log('dos', routess); */
+    onNavigate('/Register');
+    const divRoot = document.querySelector('#gmail-signup');
+    expect(divRoot.textContent).toBe('Registrarse con Gmail');
   });
-}); */
+});
 
 // Intento Fallido
 
