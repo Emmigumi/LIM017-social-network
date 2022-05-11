@@ -7,7 +7,7 @@ import {
   getSinglePost,
   updatePost,
 } from '../Firebase/firestore.js';
-import { firestore } from '../Firebase/init.js';
+// import { firestore } from '../Firebase/init.js';
 
 export const Feed = () => {
   const userId = sessionStorage.getItem('uid');
@@ -65,7 +65,6 @@ export const Feed = () => {
     let cleaner = '';
     querySnapShot.forEach((doc) => {
       const post = doc.data();
-
       // comprobar el usuario de la sesion con el que hizo el post con operador ternario
 
       const edit = (userId === post.userId) ? `

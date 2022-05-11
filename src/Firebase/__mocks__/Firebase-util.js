@@ -8,3 +8,5 @@ export const initializeApp = () => Promise.resolve({});
 export const getFirestore = () => ({});
 export const collection = jest.fn((db, collection) => Promise.resolve({}));
 export const addDoc = () => Promise.resolve({});
+export const deleteDoc = () => ({});
+export const doc = jest.fn((a, b, c) => Promise.resolve({}));

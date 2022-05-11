@@ -476,7 +476,7 @@ footer {
 /* -------Media Querys------ */
 
 /*--Landing --*/
-@media screen and (min-width: 768px) {
+/* @media screen and (min-width: 768px) {
   #landing-div-global {
     grid-template-areas:
       "img-welcome-desktop logo-desktop"
@@ -498,7 +498,7 @@ footer {
     flex-direction: column;
     margin: 60px 0 50px 118px;
   }
-}
+} */
 
 .hide {
   display: none;
